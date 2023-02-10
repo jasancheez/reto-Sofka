@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Estación Espacial Sofka</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}"/>
+    <link rel="stylesheet" th:href="@{/webjars/font-awesome/css/all.css}"/>
+    <script th:src="@{/webjars/jquery/jquery.min.js}"></script>
+    <script th:src="@{/webjars/popper.js/umd/popper.min.js}"></script>
+    <script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="/">Clasificación de Naves Espaciales</a>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+
+                <li class="nav-item">
+                    <a class="nav-link" href="/agregar">Agregar Nave</a>
+                </li>
+
+            </ul>
+        </div>
+    </div>
+</nav>
+<br>
+
+<div class="container text-center">
+    <form class="row g-3" th:action="@{/}">
+        <div class="col-auto">
+
+            <input type="text" name="palabraClave" class="form-control" id="palabraClave" th:value="${palabraClave}"
+                   placeholder="Buscar">
+
+        </div>
+        <div class="col-auto">
+        <input th:type="submit" class="btn btn-info mb-2" th:value="Buscar">
+        </div>
+
+    </form>
+    <br>
+    <table class="table table-striped">
+        <thead>
+        <tr class="table-dark">
+            <th scope="col">Nombre</th>
+            <th scope="col">Tipo de Nave</th>
+            <th scope="col">País</th>
+            <th scope="col">Peso</th>
+            <th scope="col">Potencia</th>
+            <th scope="col">Empuje</th>
+            <th scope="col">Capacidad carga</th>
+            <th scope="col"> Tipo de Combustible</th>
+            <th scope="col">Acción</th>
+
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="naves : ${naves}">
+            <td th:text="${naves.nombre_nave}"></td>
+            <td th:text="${naves.categoria}"></td>
+            <td th:text="${naves.pais}"></td>
+            <td th:text="${naves.peso}"></td>
+            <td th:text="${naves.potencia}"></td>
+            <td th:text="${naves.capEmpuje}"></td>
+            <td th:text="${naves.capCarga}"></td>
+            <td th:text="${naves.combustible}"></td>
+            <td>
+                <a class="btn btn-primary" th:href="@{/editar/} + ${naves.id_nave}" th:text="Editar"<a/>
+                &nbsp;
+                <a class="btn btn-danger" th:href="@{/eliminar/} + ${naves.id_nave}" th:text="Eliminar"/>
+            </td>
+
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+</body>
+<footer class="text-center text-white" style="background-color: #f1f1f1;">
+    <!-- Grid container -->
+    <div class="container pt-4">
+        <!-- Section: Social media -->
+        <section class="mb-4">
+            <!-- Instagram -->
+            <a
+                    class="btn btn-link btn-floating btn-lg text-dark m-1"
+                    href="https://www.instagram.com/alex_sanchez888/"
+                    role="button"
+                    data-mdb-ripple-color="dark"
+            ><i class="fab fa-instagram"></i
+            ></a>
+
+            <!-- Linkedin -->
+            <a
+                    class="btn btn-link btn-floating btn-lg text-dark m-1"
+                    href="https://www.linkedin.com/in/john-alexander-sanchez-betancur-a509501b4?lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base_contact_details%3BSJTQqGczQx6reQnk496wEg%3D%3D"
+                    role="button"
+                    data-mdb-ripple-color="dark"
+            ><i class="fab fa-linkedin"></i
+            ></a>
+            <!-- Github -->
+            <a
+                    class="btn btn-link btn-floating btn-lg text-dark m-1"
+                    href="https://github.com/jasancheez"
+                    role="button"
+                    data-mdb-ripple-color="dark"
+            ><i class="fab fa-github"></i
+            ></a>
+        </section>
+        <!-- Section: Social media -->
+    </div>
+    <!-- Grid container -->
+
+    <!-- Copyright -->
+    <div class="text-center text-dark p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+        © 2020 Copyright:
+        <a class="text-dark" href="">Alex Sánchez</a>
+    </div>
+    <!-- Copyright -->
+</footer>
+</html>
